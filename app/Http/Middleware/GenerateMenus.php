@@ -32,7 +32,6 @@ class GenerateMenus
                     $menu->item($parent)->add($menuitem->name, url($menuitem->url));
     
                 }
-                echo "<pre>";print_r($menu);
             }
         });
         return $next($request);
