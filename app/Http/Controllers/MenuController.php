@@ -95,6 +95,24 @@ class MenuController extends BaseController
      */
 
     public function getMenuItems() {
-        return MenuItem::all();
+        $menus =  MenuItem::get()->toArray();
+        return $this->buildTree($menus);
     }
+
+    public function buildTree(array $elements, $parentId = 0) {
+        $branch = array();
+    
+        foreach ($elements as $element) {
+            if ($element['parent_id'] == $parentId) {
+                $children = $this->buildTree($elements, $element['id']);
+                if ($children) {
+                    $element['children'] = $children;
+                }
+                $branch[] = $element;
+            }
+        }
+    
+        return $branch;
+    }
+    
 }
