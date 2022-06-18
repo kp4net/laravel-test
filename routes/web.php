@@ -24,3 +24,7 @@ Route::get('/events', [EventsController::class, 'getEventsWithWorkshops']);
 Route::get('/futureevents', [EventsController::class, 'getFutureEventsWithWorkshops']);
 Route::get('/warmupevents', [EventsController::class, 'getWarmupEvents']);
 Route::get('/menu', [MenuController::class, 'getMenuItems']);
+
+
+Route::post('/save-booking', ['uses' => 'FrontController@saveBooking'])->name('saveBooking');
+Route::post('/booking-slots', ['uses' => 'FrontController@bookingSlots'])->name('bookingSlots');
